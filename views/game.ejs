@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Memory Game</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/styles.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      height: 100vh;
+    }
+    .game-container {
+      background-color: #333;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .game-container h2 {
+      color: #fff;
+    }
+    .game-board {
+      background-color: #444;
+      padding: 20px;
+      border-radius: 10px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+    .game-card {
+      background-color: #555;
+      padding: 20px;
+      border-radius: 10px;
+      color: #fff;
+      text-align: center;
+    }
+    .timer, .score {
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-4 game-container">
+  <h2 class="text-center">Memory Game - <%= theme.toUpperCase() %> Theme</h2>
+
+  <div class="text-end me-4 mt-3 timer">
+    <h5>⏱ Time: <span id="timer">00:00</span></h5>
+  </div>
+
+  <div id="game-board" class="game-board mt-3"></div>
+
+  <div class="text-center mt-4 score">
+    <h4>Score: <span id="score">0</span></h4>
+    <a href="/leaderboard" class="btn btn-outline-light mt-3">View Leaderboard</a>
+  </div>
+</div>
+
+<script>
+  const theme = "<%= theme %>";
+</script>
+
+<script src="/js/game.js"></script>
+
+<script>
+  let seconds = 0;
+  let minutes = 0;
+
+  function updateTimer() {
+    seconds++;
+    if (seconds === 60) {
+      minutes++;
+      seconds = 0;
+    }
+    const formattedTime =
+      (minutes < 10 ? "0" + minutes : minutes) + ":" +
+      (seconds < 10 ? "0" + seconds : seconds);
+    document.getElementById('timer').innerText = formattedTime;
+  }
+
+  setInterval(updateTimer, 1000);
+</script>
+
+</body>
+</html>

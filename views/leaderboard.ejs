@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Leaderboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      height: 100vh;
+    }
+    .leaderboard-container {
+      background-color: #333;
+      color: #fff;
+      border-radius: 15px;
+      padding: 30px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    table {
+      background-color: #444;
+      color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    th, td {
+      background-color: #444 !important;
+    }
+    th {
+      color: #ffc107;
+    }
+    td {
+      color: #fff !important;
+    }
+    .btn-custom {
+      background-color: #ffc107;
+      color: #000;
+      border: none;
+    }
+    .btn-custom:hover {
+      background-color: #e0a800;
+    }
+  </style>
+</head>
+<body>
+<div class="container mt-5 leaderboard-container">
+  <h2 class="text-center">Top Scores</h2>
+  <table class="table table-striped text-center mt-4">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% scores.forEach(score => { %>
+        <tr>
+          <td><%= score.name %></td>
+          <td><%= score.score %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+  <div class="text-center">
+    <a href="/theme" class="btn btn-custom mt-3">Play Again</a>
+  </div>
+</div>
+</body>
+</html>
